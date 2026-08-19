@@ -3,6 +3,13 @@
   "module": "src/index.ts",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/francyfox/turtape.git",
+    "directory": "packages/sdk"
+  },
+  "homepage": "https://github.com/francyfox/turtape",
+  "bugs": "https://github.com/francyfox/turtape/issues",
   "scripts": {
     "dev": "bun --watch ./src/index.ts",
     "build": "tsdown",

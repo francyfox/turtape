@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="apps/docs/static/logo.svg" alt="turtape" width="180" />
+  <a href="https://github.com/francyfox/turtape">
+    <img src="apps/docs/static/logo.svg" alt="turtape" width="180" />
+  </a>
 </p>
 
 <h1 align="center">turtape</h1>
@@ -7,7 +9,15 @@
 <p align="center">Bun/Node.js SDK, CLI, and query layer for <a href="https://turingdb.ai">TuringDB</a>.</p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="License: MIT" />
+  <a href="https://github.com/francyfox/turtape/actions/workflows/deploy-docs.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/francyfox/turtape/deploy-docs.yml?branch=main&style=for-the-badge&label=docs" alt="Docs deploy status" />
+  </a>
+  <a href="https://github.com/francyfox/turtape/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/francyfox/turtape?style=for-the-badge" alt="License: MIT" />
+  </a>
+  <a href="https://github.com/francyfox/turtape/stargazers">
+    <img src="https://img.shields.io/github/stars/francyfox/turtape?style=for-the-badge" alt="GitHub stars" />
+  </a>
   <img src="https://img.shields.io/badge/Bun-000000?style=for-the-badge&logo=bun&logoColor=fbf0df" alt="Bun" />
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Turborepo-EF4444?style=for-the-badge&logo=turborepo&logoColor=white" alt="Turborepo" />
@@ -16,8 +26,8 @@
 
 ## What is this?
 
-`turtape` is a from-scratch toolkit for [TuringDB](https://turingdb.ai), an in-memory columnar graph
-database with an OpenCypher-subset query language and git-style versioning:
+`turtape` is a toolkit for [TuringDB](https://turingdb.ai), an in-memory columnar graph
+database with an OpenCypher-subset query language:
 
 - **`@turtape/sdk`** — a runtime-agnostic client (plain `fetch`, zero dependencies — works the same on
   Bun and Node.js) that talks to a TuringDB daemon over its HTTP/JSON protocol.
@@ -33,7 +43,7 @@ Full scope, sequencing, and the confirmed HTTP wire protocol live in **[the plan
 
 | Path                             | What                                                                                   |
 | -------------------------------- | --------------------------------------------------------------------------------------- |
-| `apps/docs`                      | The documentation site ([SveltePress](https://sveltepress.site)) — deploys to Vercel.   |
+| `apps/docs`                      | The documentation site ([SveltePress](https://sveltepress.site)) — deployed to GitHub Pages via `.github/workflows/deploy-docs.yml` on push to `main`. |
 | `packages/sdk`                   | `@turtape/sdk` — the TuringDB client.                                                   |
 | `docker/`, `docker-compose.yml`  | A local TuringDB instance for development and tests.                                    |
 

@@ -6,6 +6,10 @@ actions:
   - label: Read the plan
     type: primary
     to: /plan
+  - label: View on GitHub
+    type: secondary
+    to: https://github.com/francyfox/turtape
+    external: true
 features:
   - title: Runtime-agnostic SDK
     description: Built on plain fetch, no runtime dependencies — works the same on Bun and Node.js.

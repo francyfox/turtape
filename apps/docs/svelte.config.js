@@ -11,6 +11,11 @@ const config = {
     adapter: adapter({
       pages: "dist",
     }),
+    // GitHub Pages serves project sites under /<repo-name>/, not the domain
+    // root. Set BASE_PATH in CI only -- local dev/build stays at "".
+    paths: {
+      base: process.env.BASE_PATH ?? "",
+    },
   },
 };
 

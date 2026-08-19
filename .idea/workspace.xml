@@ -5,48 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58e82fea-f0c9-4884-90fe-984add87acb1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/biome.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.npmrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CLAUDE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/docs/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/docs/src/app.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/docs/src/app.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/docs/src/routes/+layout.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/docs/src/routes/+layout.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/docs/src/routes/+page.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/docs/static/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/docs/svelte.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/docs/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/docs/vite.config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/biome.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker/db.Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/CLAUDE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/bunfig.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/src/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/core/errors.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/core/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/core/service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/core/types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/retry.test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/retry.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/src/test-support.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/tsdown.config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/turbo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLAUDE.md" beforeDir="false" afterPath="$PROJECT_DIR$/CLAUDE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/docs/svelte.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docs/svelte.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +25,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "francyfox"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/francyfox/turtape.git",
+    "accountId": "68133e03-dc08-494d-82bd-09eb6e0b8739"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 1
 }]]></component>
@@ -107,7 +81,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1787114404824</updated>
-      <workItem from="1787114405860" duration="15137000" />
+      <workItem from="1787114405860" duration="15683000" />
     </task>
     <servers />
   </component>

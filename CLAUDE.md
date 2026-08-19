@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Turborepo monorepo, package manager is Bun (`devEngines.packageManager` in `package.json`), consistent with the default Bun guidance below.
 
-- `apps/docs` — SveltePress documentation site (VitePress-equivalent for SvelteKit). Will host docs for the TuringDB SDK/CLI once they exist; Sveltia CMS integration for content editing is planned but not wired up yet.
+- `apps/docs` — SveltePress documentation site (VitePress-equivalent for SvelteKit). Will host docs for the TuringDB SDK/CLI once they exist; Sveltia CMS integration for content editing is planned but not wired up yet. Deployed to GitHub Pages via `.github/workflows/deploy-docs.yml` on push to `main` (needs the repo's Settings → Pages → Source set to "GitHub Actions" once there's a real remote). Static output uses `@sveltejs/adapter-static`; `BASE_PATH` (set only in CI) prefixes routes for GitHub Pages' project-site subpath — leave it unset locally.
 - `packages/sdk` (`@turtape/sdk`) — see below, in progress.
 
 The original `create-turbo` scaffold packages (`packages/ui`, `packages/eslint-config`, `packages/typescript-config`) have been removed — there's no shared `@repo/*` config layer anymore. Lint/format is centralized at the repo root via Biome (see Commands); each package's `tsconfig.json` is currently standalone (no shared base to extend).

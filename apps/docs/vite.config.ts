@@ -11,6 +11,7 @@ const config = defineConfig({
           // Add your sidebar configs here
         },
         logo: "/logo.svg",
+        github: "https://github.com/francyfox/turtape",
         highlighter: {
           languages: ["svelte", "sh", "js", "html", "ts", "md", "css", "scss", "json"],
         },
