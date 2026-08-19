@@ -1,0 +1,13 @@
+services:
+  turingdb:
+    build:
+      context: .
+      dockerfile: docker/db.Dockerfile
+    ports:
+      - "6666:6666" # query API, used by @turtape/sdk
+      - "8080:8080" # built-in graph visualizer UI
+    volumes:
+      - turingdb_data:/data
+
+volumes:
+  turingdb_data:

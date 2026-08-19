@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="58e82fea-f0c9-4884-90fe-984add87acb1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/biome.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.npmrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CLAUDE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/docs/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/docs/src/app.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/docs/src/app.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/docs/src/routes/+layout.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/docs/src/routes/+layout.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/docs/src/routes/+page.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/docs/static/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/docs/svelte.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/docs/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/docs/vite.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/biome.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker/db.Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/CLAUDE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/bunfig.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/core/errors.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/core/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/core/service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/core/types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/retry.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/retry.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/test-support.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/tsdown.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/turbo.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="3I7T38zPGK6ERZO6I6UU3Qpb0Cg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "Settings.Biome",
+    "ts.external.directory.path": "/home/fox/WebstormProjects/turtape/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/docs/static" />
+      <recent name="$PROJECT_DIR$/packages/sdk/src" />
+      <recent name="$PROJECT_DIR$/packages" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-WS-251.29188.71" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="58e82fea-f0c9-4884-90fe-984add87acb1" name="Changes" comment="" />
+      <created>1787114404824</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1787114404824</updated>
+      <workItem from="1787114405860" duration="15137000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

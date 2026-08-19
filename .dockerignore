@@ -1,0 +1,9 @@
+node_modules
+**/node_modules
+.git
+.turbo
+.svelte-kit
+.sveltepress
+dist
+build
+.idea

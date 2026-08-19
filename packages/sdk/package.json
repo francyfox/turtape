@@ -1,0 +1,29 @@
+{
+  "name": "@turtape/sdk",
+  "module": "src/index.ts",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "bun --watch ./src/index.ts",
+    "build": "tsdown",
+    "test": "bun test",
+    "size": "bun run build && size-limit"
+  },
+  "devDependencies": {
+    "@size-limit/file": "^13.0.3",
+    "@types/bun": "latest",
+    "size-limit": "^13.0.3",
+    "tsdown": "^0.22.14",
+    "unrun": "^0.3.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "size-limit": [
+    {
+      "name": "@turtape/sdk",
+      "path": "dist/index.mjs",
+      "limit": "10 kB"
+    }
+  ]
+}
