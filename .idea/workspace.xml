@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58e82fea-f0c9-4884-90fe-984add87acb1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CLAUDE.md" beforeDir="false" afterPath="$PROJECT_DIR$/CLAUDE.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/docs/svelte.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docs/svelte.config.js" afterDir="false" />
-    </list>
+    <list default="true" id="58e82fea-f0c9-4884-90fe-984add87acb1" name="Changes" comment="feat: ci deploy docs" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,11 +76,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1787114404824</updated>
-      <workItem from="1787114405860" duration="15683000" />
+      <workItem from="1787114405860" duration="16022000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: ci deploy docs">
+      <option name="closed" value="true" />
+      <created>1787142158212</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1787142158212</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: ci deploy docs" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: ci deploy docs" />
   </component>
 </project>

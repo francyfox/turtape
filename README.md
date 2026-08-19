@@ -43,7 +43,7 @@ Full scope, sequencing, and the confirmed HTTP wire protocol live in **[the plan
 
 | Path                             | What                                                                                   |
 | -------------------------------- | --------------------------------------------------------------------------------------- |
-| `apps/docs`                      | The documentation site ([SveltePress](https://sveltepress.site)) — deployed to GitHub Pages via `.github/workflows/deploy-docs.yml` on push to `main`. |
+| `apps/docs`                      | The documentation site ([SveltePress](https://sveltepress.site)) — deployed to GitHub Pages via `.github/workflows/deploy-docs.yml` on push to `main`/`master`. |
 | `packages/sdk`                   | `@turtape/sdk` — the TuringDB client.                                                   |
 | `docker/`, `docker-compose.yml`  | A local TuringDB instance for development and tests.                                    |
 
