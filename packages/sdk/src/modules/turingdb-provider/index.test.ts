@@ -1,24 +1,11 @@
-import { afterEach, describe, expect, mock, test } from "bun:test";
+import { describe, expect, test } from "bun:test";
 import { TurtapeError } from "@/modules/core/errors";
 import { TuringDBProvider } from "@/modules/turingdb-provider";
-import { captureRejection } from "@/test-support";
-
-const originalFetch = globalThis.fetch;
-afterEach(() => {
-  globalThis.fetch = originalFetch;
-});
-
-const jsonResponse = (body: unknown, status = 200) =>
-  new Response(JSON.stringify(body), {
-    status,
-    headers: { "content-type": "application/json" },
-  });
-
-const mockFetch = (
-  impl: (url: URL, init: RequestInit) => Promise<Response>,
-) => {
-  globalThis.fetch = mock(impl) as unknown as typeof fetch;
-};
+import {
+  captureRejection,
+  jsonResponse,
+  mockFetch,
+} from "@/utils/test-support.ts";
 
 const emptyResult = {
   header: { column_names: [], column_types: [] },

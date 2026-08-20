@@ -28,5 +28,7 @@ export interface TurtapeProvider {
 }
 
 export interface TurtapeConfig {
+  host?: string;
+  token?: string;
   provider: TurtapeProvider;
 }

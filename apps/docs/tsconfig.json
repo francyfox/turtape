@@ -3,7 +3,6 @@
   "compilerOptions": {
     "lib": ["ESNext"],
     "module": "ESNext",
-    "moduleResolution": "node",
     "resolveJsonModule": true,
     "allowJs": true,
     "checkJs": true,

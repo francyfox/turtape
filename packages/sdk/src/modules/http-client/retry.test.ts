@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { withRetry } from "@/modules/http-client/retry";
-import { captureRejection } from "@/test-support";
+import { captureRejection } from "@/utils/test-support.ts";
 
 describe("withRetry", () => {
   test("returns the result on first success without retrying", async () => {

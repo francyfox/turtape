@@ -1,24 +1,11 @@
-import { afterEach, describe, expect, mock, test } from "bun:test";
+import { describe, expect, test } from "bun:test";
 import { TurtapeError } from "@/modules/core/errors";
 import { createHttpClient } from "@/modules/http-client";
-import { captureRejection } from "@/test-support";
-
-const originalFetch = globalThis.fetch;
-afterEach(() => {
-  globalThis.fetch = originalFetch;
-});
-
-const jsonResponse = (body: unknown, status = 200) =>
-  new Response(JSON.stringify(body), {
-    status,
-    headers: { "content-type": "application/json" },
-  });
-
-const mockFetch = (
-  impl: (url: URL, init: RequestInit) => Promise<Response>,
-) => {
-  globalThis.fetch = mock(impl) as unknown as typeof fetch;
-};
+import {
+  captureRejection,
+  jsonResponse,
+  mockFetch,
+} from "@/utils/test-support.ts";
 
 describe("createHttpClient", () => {
   test("POSTs to host+path with the given body and merged headers", async () => {

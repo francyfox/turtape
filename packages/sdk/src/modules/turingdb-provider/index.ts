@@ -1,11 +1,12 @@
 import { TurtapeError } from "@/modules/core/errors";
-import type { RetryOptions } from "@/modules/http-client/retry";
 import type {
   QueryContext,
   QueryResponse,
   TurtapeProvider,
 } from "@/modules/core/types";
 import { createHttpClient } from "@/modules/http-client";
+import type { RetryOptions } from "@/modules/http-client/retry";
+import type { TuringDBErrorCode } from "@/modules/turingdb-provider/status";
 
 export interface TuringDBProviderOptions {
   host?: string;
@@ -51,7 +52,9 @@ export const TuringDBProvider = (
     // generic transport.
     if (body.error) {
       throw new TurtapeError(body.error, {
-        code: body.error,
+        // `body.error` carries the raw status code string (e.g. "ANALYZE_ERROR"),
+        // not a human-readable message -- see TuringDBErrorCode for the closed set.
+        code: body.error as TuringDBErrorCode,
         details: body.error_details,
       });
     }

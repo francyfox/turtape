@@ -1,7 +1,19 @@
 {
   "name": "@turtape/sdk",
-  "module": "src/index.ts",
   "type": "module",
+  "types": "./dist/index.d.mts",
+  "module": "./dist/index.mjs",
+  "main": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",

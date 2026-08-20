@@ -1,0 +1,15 @@
+{
+  "name": "sdk",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@turtape/sdk": "file:../../packages/sdk"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

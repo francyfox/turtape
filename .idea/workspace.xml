@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58e82fea-f0c9-4884-90fe-984add87acb1" name="Changes" comment="feat: ci deploy docs" />
+    <list default="true" id="58e82fea-f0c9-4884-90fe-984add87acb1" name="Changes" comment="feat: ci deploy docs">
+      <change afterPath="$PROJECT_DIR$/examples/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/utils/test-support.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/docs/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docs/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/docs/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docs/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/sdk/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/core/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/core/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/core/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/core/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/retry.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/retry.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/sdk/src/test-support.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/sdk/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/tsconfig.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,46 +35,47 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "francyfox"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;francyfox&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/francyfox/turtape.git",
-    "accountId": "68133e03-dc08-494d-82bd-09eb6e0b8739"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/francyfox/turtape.git&quot;,
+    &quot;accountId&quot;: &quot;68133e03-dc08-494d-82bd-09eb6e0b8739&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="3I7T38zPGK6ERZO6I6UU3Qpb0Cg" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "Settings.Biome",
-    "ts.external.directory.path": "/home/fox/WebstormProjects/turtape/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Settings.Biome&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/fox/WebstormProjects/turtape/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/sdk/src/utils" />
+      <recent name="$PROJECT_DIR$/examples" />
       <recent name="$PROJECT_DIR$/apps/docs/static" />
       <recent name="$PROJECT_DIR$/packages/sdk/src" />
       <recent name="$PROJECT_DIR$/packages" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -76,7 +92,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1787114404824</updated>
-      <workItem from="1787114405860" duration="16022000" />
+      <workItem from="1787114405860" duration="17637000" />
+      <workItem from="1787200614475" duration="8154000" />
     </task>
     <task id="LOCAL-00001" summary="feat: ci deploy docs">
       <option name="closed" value="true" />
@@ -86,7 +103,23 @@
       <option name="project" value="LOCAL" />
       <updated>1787142158212</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: ci deploy docs">
+      <option name="closed" value="true" />
+      <created>1787142508938</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1787142508938</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: ci deploy docs">
+      <option name="closed" value="true" />
+      <created>1787142519237</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1787142519237</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
