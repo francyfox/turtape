@@ -4,9 +4,9 @@ import { TuringDBProvider } from "@/modules/turingdb-provider";
 import { TuringDBErrorCode } from "@/modules/turingdb-provider/status";
 
 export {
-  TurtapeSdk,
+  TuringDBErrorCode,
+  TuringDBProvider,
   type TurtapeConfig,
   TurtapeError,
-  TuringDBProvider,
-  TuringDBErrorCode,
+  TurtapeSdk,
 };

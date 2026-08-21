@@ -10,6 +10,11 @@ set -e
 # (turingdb-visualizer has no client-side router, so no SPA-fallback is needed).
 python3 -m http.server "$TURINGDB_VIS_PORT" --bind 127.0.0.1 --directory "$TURINGDB_VIS_DIR" >/var/log/turingdb-visualizer.log 2>&1 &
 
-# turingdb exits immediately if stdin is closed (no -demon flag) -- compose
-# sets stdin_open: true to keep this alive.
-exec turingdb start -i 0.0.0.0 -p 6666 -ui -ui-port 8080 -turing-dir /data
+# EXPERIMENT: -demon avoids the interactive LineNoise shell entirely (it
+# forks, waits for the server to report ready, and returns) instead of
+# running `TuringShell::startLoop()` reading stdin in a loop. Testing whether
+# that shell -- which expects a real TTY and gets a plain open pipe from
+# `stdin_open: true` instead -- is what was pegging a worker thread at 100%
+# CPU on COMMIT (see docs/turingdb-issues: commit-cpu-hang).
+turingdb start -i 0.0.0.0 -p 6666 -ui -ui-port 8080 -turing-dir /data -demon
+exec tail -F /data/logs/turingdb.log

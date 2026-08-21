@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { TurtapeError } from "@/modules/core/errors";
 import { createHttpClient } from "@/modules/http-client";
+import { retryMiddleware } from "@/modules/http-client/middleware";
 import {
   captureRejection,
   jsonResponse,
@@ -111,18 +112,26 @@ describe("createHttpClient", () => {
       return jsonResponse({ ok: true });
     });
 
-    const client = createHttpClient({
-      host: "http://localhost:6666",
-      retry: {
+    const client = createHttpClient({ host: "http://localhost:6666" }).use(
+      retryMiddleware({
         retries: 3,
         minDelayMs: 1,
         maxDelayMs: 2,
         isRetryable: () => true,
-      },
-    });
+      }),
+    );
     const result = await client.request<{ ok: boolean }>({ path: "/query" });
 
     expect(result).toEqual({ ok: true });
     expect(calls).toBe(3);
+  });
+
+  test("use() returns the same client, so calls chain", async () => {
+    mockFetch(async () => jsonResponse({ ok: true }));
+
+    const client = createHttpClient({ host: "http://localhost:6666" });
+    const chained = client.use(async (request, next) => next(request));
+
+    expect(chained).toBe(client);
   });
 });

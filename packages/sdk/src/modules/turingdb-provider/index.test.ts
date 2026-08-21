@@ -118,6 +118,42 @@ describe("TuringDBProvider", () => {
     expect(calls).toBe(1);
   });
 
+  test.each(["COMMIT", "  change submit  ", "CHANGE SUBMIT"])(
+    "does not retry %j on a transport failure -- a retried submit could be a duplicate of one that already went through",
+    async (cypher) => {
+      let calls = 0;
+      mockFetch(async () => {
+        calls++;
+        throw new Error("connection refused");
+      });
+
+      await captureRejection(
+        TuringDBProvider({ retry: { retries: 5, minDelayMs: 1 } }).query(
+          cypher,
+          { change: "1" },
+        ),
+      );
+
+      expect(calls).toBe(1);
+    },
+  );
+
+  test("still retries CHANGE NEW and reads on a transport failure", async () => {
+    let calls = 0;
+    mockFetch(async () => {
+      calls++;
+      if (calls < 2) throw new Error("connection refused");
+      return jsonResponse(emptyResult);
+    });
+
+    const result = await TuringDBProvider({
+      retry: { retries: 2, minDelayMs: 1, maxDelayMs: 2 },
+    }).query("CHANGE NEW");
+
+    expect(calls).toBe(2);
+    expect(result).toEqual(emptyResult);
+  });
+
   test("reconnect() is a no-op that does not throw", () => {
     expect(() => TuringDBProvider().reconnect()).not.toThrow();
   });

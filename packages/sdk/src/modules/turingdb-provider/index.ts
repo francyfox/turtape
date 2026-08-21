@@ -1,3 +1,4 @@
+import * as console from "node:console";
 import { TurtapeError } from "@/modules/core/errors";
 import type {
   QueryContext,
@@ -5,20 +6,33 @@ import type {
   TurtapeProvider,
 } from "@/modules/core/types";
 import { createHttpClient } from "@/modules/http-client";
-import type { RetryOptions } from "@/modules/http-client/retry";
+import {
+  type HttpRequestOptions,
+  type RetryMiddlewareOptions,
+  retryMiddleware,
+} from "@/modules/http-client/middleware";
 import type { TuringDBErrorCode } from "@/modules/turingdb-provider/status";
 
 export interface TuringDBProviderOptions {
   host?: string;
   token?: string;
-  retry?: RetryOptions;
+  retry?: RetryMiddlewareOptions;
 }
 
-// Everything createHttpClient's `request()` throws is a transport-level
-// problem (network failure, malformed JSON, non-2xx) -- TuringDB's own query
-// errors (`body.error`) are checked below, *after* request() has already
-// resolved, so they never enter the retry loop. Safe to retry anything here.
-const isTransportError = () => true;
+// `COMMIT` and `CHANGE SUBMIT` mutate server state, and `CHANGE SUBMIT` in
+// particular can take long enough to respond that the client sees a
+// transport error (dropped connection, timeout) *after* the write already
+// went through server-side -- confirmed against a live server: retrying it
+// then re-submits an already-applied change, and the server rightly answers
+// `CHANGE_NOT_FOUND` for the duplicate, which looks like a failure even
+// though the original write succeeded (see docs/turingdb-issues). Every
+// other query here is either read-only or `CHANGE NEW`, neither of which has
+// this half-applied-then-repeated-request risk, so they stay safe to retry
+// blindly on any transport error.
+const NON_IDEMPOTENT = /^\s*(commit|change\s+submit)\b/i;
+
+const isRetryable = (_error: unknown, request: HttpRequestOptions) =>
+  !(typeof request.body === "string" && NON_IDEMPOTENT.test(request.body));
 
 export const TuringDBProvider = (
   options: TuringDBProviderOptions = {},
@@ -29,8 +43,7 @@ export const TuringDBProvider = (
   const http = createHttpClient({
     host,
     headers: token ? { authorization: `Bearer ${token}` } : undefined,
-    retry: { isRetryable: isTransportError, ...options.retry },
-  });
+  }).use(retryMiddleware({ isRetryable, ...options.retry }));
 
   const query = async (
     cypher: string,
@@ -45,6 +58,7 @@ export const TuringDBProvider = (
         commit: context.commit,
       },
     });
+    console.log(cypher);
 
     // Confirmed against a live server: query errors (bad Cypher, write outside
     // a change, ...) come back as HTTP 200 with an `error` field, not a

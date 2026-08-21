@@ -14,10 +14,11 @@ Each page: repro, expected vs. actual, and how confident we are it's actually a 
 - [Matching an unused label throws instead of returning empty](/turingdb-issues/unknown-label-on-match) — looks like a real deviation from openCypher semantics.
 - [`HISTORY` keyword doesn't parse — use `CALL db.history()` instead](/turingdb-issues/history-syntax-mismatch) — docs show a bare `HISTORY` keyword that doesn't parse; not a version-drift artifact, looks wrong from the start.
 - [Inline pattern filter + `count()` crashes](/turingdb-issues/inline-filter-count-crash) — internal `ColumnMask` dispatch error leaks a raw C++ type name; `WHERE` works fine as a substitute. Confirmed still present on current `main`.
+- [Without `-demon`, writes are 500-5000x slower](/turingdb-issues/commit-cpu-hang) — running `turingdb start` without `-demon` (as upstream's own `run_visualizer.sh` does) turns an 0.1s `COMMIT`/`CHANGE SUBMIT` into 8-10 minutes, pegging one HTTP worker thread at ~100% CPU. Root cause not fully diagnosed (no debugger in the runtime image), but the fix (`-demon`) is confirmed and repeatable.
 
 ## Resolved (kept for reference)
 
-- [Commit not visible](/turingdb-issues/commit-not-visible) — not a bug: `COMMIT` alone doesn't merge into main, `CHANGE SUBMIT` does. Also notes that `CHANGE SUBMIT` can respond very slowly.
+- [Commit not visible](/turingdb-issues/commit-not-visible) — not a bug: `COMMIT` alone doesn't merge into main, `CHANGE SUBMIT` does. Originally also noted `CHANGE SUBMIT` responding very slowly; that turned out to be [the `-demon` issue below](/turingdb-issues/commit-cpu-hang), not inherent to the operation.
 
 ## Docker image / CI / packaging, not the engine itself
 
@@ -27,7 +28,7 @@ Each page: repro, expected vs. actual, and how confident we are it's actually a 
 
 ## Environment
 
-- Image: `turingdbai/turingdb:latest` (see `docker/db.Dockerfile`) — switched from `:nightly`, which turned out to be the more stale of the two tags (see above).
+- Image: self-built (`docker/db.Dockerfile`) — `pip install turingdb` from PyPI on a `python:3.14-slim` base, not `turingdbai/turingdb:latest`/`:nightly`. Both official tags turned out to lag `main` by months (see below), and `latest`'s own `ENTRYPOINT` breaks a Dockerfile written for `nightly` — see the two entries below for details. The self-built image also runs `turingdb start -demon` (see `commit-cpu-hang` above), which the official images' `run_visualizer.sh` does not.
 - Started via `docker compose up -d` at repo root
 - Queried directly through `@turtape/sdk`'s `queryRaw()` (`packages/sdk`), which just POSTs the Cypher string to the query API at `localhost:6666`
 - Cross-checked several findings against `turing-db/turingdb`'s `main` branch source directly (not just the locally running image), given how stale both Docker tags turned out to be

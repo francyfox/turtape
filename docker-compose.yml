@@ -3,13 +3,43 @@ services:
     build:
       context: .
       dockerfile: docker/db.Dockerfile
-    # turingdb exits immediately (exit 0) if its stdin is closed -- keep it open.
-    stdin_open: true
+    # Restarts the container if the process itself dies. Does NOT trigger on
+    # a healthcheck failure (Docker only auto-restarts on unhealthy under
+    # Swarm) -- that's what the `autoheal` service below is for.
+    restart: unless-stopped
+    # Defense-in-depth, not a workaround for a known-open bug: the severe
+    # COMMIT/CHANGE SUBMIT CPU hang documented in docker/db.Dockerfile's
+    # history turned out to be caused by running `turingdb start` without
+    # `-demon` -- that path also spins up an interactive LineNoise shell
+    # reading stdin, and stdin in a container is a plain pipe, not a TTY.
+    # `turingdb-entrypoint.sh` now uses `-demon`, which skips that shell
+    # entirely -- confirmed the same write cycle that took 8-10 minutes now
+    # takes well under a second. Keeping these limits anyway in case some
+    # other operation turns out to be genuinely expensive.
+    cpus: "2"
+    mem_limit: "2g"
+    labels:
+      - "autoheal=true"
     ports:
       - "6666:6666" # query API, used by @turtape/sdk
       - "8080:8080" # built-in graph visualizer UI
     volumes:
       - turingdb_data:/data
+
+  # Docker (outside Swarm mode) never restarts a container just because its
+  # HEALTHCHECK reports unhealthy -- autoheal is the standard sidecar that
+  # watches container health over the Docker API and restarts anything
+  # labeled `autoheal=true` once it goes unhealthy. Needs the Docker socket
+  # mounted, which is effectively root on the host -- acceptable for a local
+  # dev DB, but worth knowing before copying this compose file elsewhere.
+  autoheal:
+    image: willfarrell/autoheal:latest
+    restart: unless-stopped
+    environment:
+      AUTOHEAL_CONTAINER_LABEL: autoheal
+      AUTOHEAL_INTERVAL: 10
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
   turingdb_data:
