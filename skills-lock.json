@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "turingdb": {
+      "source": "turing-db/turingdb-skills",
+      "sourceType": "github",
+      "skillPath": "turingdb/SKILL.md",
+      "computedHash": "4572b05480f53f9e36e42efe6126c32f28cc83fad6c571380ed2eb815129f894"
+    }
+  }
+}

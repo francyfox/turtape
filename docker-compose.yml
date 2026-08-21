@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: docker/db.Dockerfile
+    # turingdb exits immediately (exit 0) if its stdin is closed -- keep it open.
+    stdin_open: true
     ports:
       - "6666:6666" # query API, used by @turtape/sdk
       - "8080:8080" # built-in graph visualizer UI

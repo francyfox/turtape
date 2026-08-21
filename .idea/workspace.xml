@@ -4,21 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58e82fea-f0c9-4884-90fe-984add87acb1" name="Changes" comment="feat: ci deploy docs">
-      <change afterPath="$PROJECT_DIR$/examples/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/sdk/src/utils/test-support.ts" afterDir="false" />
+    <list default="true" id="58e82fea-f0c9-4884-90fe-984add87acb1" name="Changes" comment="feat: turingDB errors">
+      <change afterPath="$PROJECT_DIR$/.agents/skills/turingdb/SKILL.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.agents/skills/turingdb/algorithms.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.agents/skills/turingdb/importing.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.agents/skills/turingdb/introspection.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.agents/skills/turingdb/querying.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.agents/skills/turingdb/startup.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.agents/skills/turingdb/writing.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.claude/skills/turingdb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/docs/src/routes/turingdb-issues/cli-version-hardcoded/+page.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/docs/src/routes/turingdb-issues/history-syntax-mismatch/+page.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/docs/src/routes/turingdb-issues/inline-filter-count-crash/+page.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/docs/src/routes/turingdb-issues/latest-image-breaking-changes/+page.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/docs/src/routes/turingdb-issues/nightly-build-disabled/+page.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/agents/domain.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/agents/issue-tracker.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/agents/triage-labels.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/src/clear-graph.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/skills-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/docs/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docs/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLAUDE.md" beforeDir="false" afterPath="$PROJECT_DIR$/CLAUDE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/docs/src/routes/turingdb-issues/+page.md" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docs/src/routes/turingdb-issues/+page.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/docs/src/routes/turingdb-issues/commit-not-visible/+page.md" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docs/src/routes/turingdb-issues/commit-not-visible/+page.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/docs/src/routes/turingdb-issues/exists-not-implemented/+page.md" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docs/src/routes/turingdb-issues/exists-not-implemented/+page.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/docs/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/docs/vite.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/sdk/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/core/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/core/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/core/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/core/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/retry.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/retry.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/sdk/src/test-support.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/sdk/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/db.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/db.Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/src/sdk.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/src/sdk.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +46,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -60,7 +78,7 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
@@ -93,7 +111,8 @@
       <option name="presentableId" value="Default" />
       <updated>1787114404824</updated>
       <workItem from="1787114405860" duration="17637000" />
-      <workItem from="1787200614475" duration="8154000" />
+      <workItem from="1787200614475" duration="18827000" />
+      <workItem from="1787290242953" duration="5414000" />
     </task>
     <task id="LOCAL-00001" summary="feat: ci deploy docs">
       <option name="closed" value="true" />
@@ -119,14 +138,34 @@
       <option name="project" value="LOCAL" />
       <updated>1787142519237</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: turingDB errors">
+      <option name="closed" value="true" />
+      <created>1787219783959</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1787219783959</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: ci deploy docs" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: ci deploy docs" />
+    <MESSAGE value="feat: turingDB errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: turingDB errors" />
   </component>
 </project>

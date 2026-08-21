@@ -44,3 +44,17 @@ Turborepo monorepo with workspaces defined in root `package.json` (`apps/*`, `pa
 - There's no turbo `lint` task — lint is Biome running the whole repo directly (see Commands), not per-package.
 
 No shared internal config packages exist anymore (the `@repo/*` scaffold packages were removed). When adding a new workspace package or app: write its own `tsconfig.json` (nothing to extend yet), add `build`/`check-types`/`test`/`dev` scripts as applicable so `turbo` picks them up, and rely on the root `biome.json` for lint/format — don't add a per-package lint script or config.
+
+## Agent skills
+
+### Issue tracker
+
+Issues live as GitHub issues in `francyfox/turtape`, managed via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Standard five-role vocabulary (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`), label strings equal to role names. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: one `CONTEXT.md` + `docs/adr/` at the repo root (neither exists yet — created lazily by `/domain-modeling`). See `docs/agents/domain.md`.

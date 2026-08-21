@@ -28,6 +28,22 @@ const config = defineConfig({
                   title: "Commit not visible",
                   to: "/turingdb-issues/commit-not-visible",
                 },
+                {
+                  title: "HISTORY syntax mismatch",
+                  to: "/turingdb-issues/history-syntax-mismatch",
+                },
+                {
+                  title: "Inline filter + count() crash",
+                  to: "/turingdb-issues/inline-filter-count-crash",
+                },
+                {
+                  title: "nightly tag is stale",
+                  to: "/turingdb-issues/nightly-build-disabled",
+                },
+                {
+                  title: "latest image breaking changes",
+                  to: "/turingdb-issues/latest-image-breaking-changes",
+                },
               ],
             },
           ],
@@ -46,6 +62,9 @@ const config = defineConfig({
             "scss",
             "json",
             "cypher",
+            "dockerfile",
+            "python",
+            "yaml",
           ],
         },
       }),

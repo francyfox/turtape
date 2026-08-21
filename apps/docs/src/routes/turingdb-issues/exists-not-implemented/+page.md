@@ -19,3 +19,5 @@ Not implemented: EXISTS
 ```
 
 **Confidence:** likely just an unimplemented feature (not a bug) — the parser accepts the syntax, the analyzer explicitly rejects it as unimplemented. Worth checking `docs.turingdb.ai`'s Cypher CheatSheet for a documented list of supported/unsupported clauses before filing; if `EXISTS` isn't listed as a known gap it's still worth a feature request.
+
+**Confirmed still true on `main`** (2026-08-20, not just our stale local image — see [nightly is stale](/turingdb-issues/nightly-build-disabled)): `query/parser/CypherParser.y` lines 1260-1261 still call `scanner.notImplemented(@$, "EXISTS")` for both `EXISTS { query }` and `EXISTS { patternWhere }` forms.

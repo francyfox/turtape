@@ -1,29 +1,19 @@
 ---
-title: Commit not visible
+title: Commit not visible (resolved)
 ---
 
-# Committed data not visible without repeating the change context
+# Committed data not visible without repeating the change context — resolved, not a bug
 
-**Repro:**
-```cypher
-CHANGE NEW
--- returns e.g. changeID = 1
-```
-then, with `context: { change: "1" }`:
-```cypher
-CREATE (pam:Person {name: "Pam"})
-```
-(succeeds), then:
-```cypher
-COMMIT
-```
-(also succeeds, empty response) — then querying **without** a `change`/`commit` context:
-```cypher
-MATCH (p:Person {name: "Pam"}) RETURN count(p) > 0 AS exists
-```
+**Original symptom:** `CHANGE NEW` → `CREATE ...` (with `context: { change }`) → `COMMIT` (with `context: { change }`) — then querying the graph **without** a `change`/`commit` context still gave `ANALYZE_ERROR: Unknown label: X`, as if the commit never reached the graph's default/main line.
 
-**Expected:** after `COMMIT`, the created node should be visible on the graph's default/main line, the same way a committed change is expected to merge.
+**Resolution: `COMMIT` alone doesn't merge a change into main — `CHANGE SUBMIT` does.** Confirmed against the docs' own example workflow (`docs.turingdb.ai/pythonsdk/reference`):
+```python
+client.query("COMMIT")
+client.query("CHANGE SUBMIT")
+client.checkout()  # back to main
+```
+Adding `CHANGE SUBMIT` (same `context: { change }`) after `COMMIT` fixed it — the data became visible in the default graph both via `queryRaw()` and visually in the web visualizer (`localhost:8080`) afterward.
 
-**Actual:** still `ANALYZE_ERROR: Unknown label: Person` — as if the commit never merged into the graph queried by default.
+**One real gotcha that remains:** `CHANGE SUBMIT` can take a very long time to respond — one of our test runs took over 2 minutes and the client-side request effectively hung/timed out. The operation had actually completed successfully server-side (confirmed after the fact — the data was there), so this looks like a slow-response issue rather than a real failure. Give it a generous timeout rather than treating a hang as an error.
 
-**Confidence:** low — this is the least-verified finding. We didn't find a documented way to merge/submit a change (tried `CHANGE SUBMIT 1`, `SUBMIT CHANGE 1`, `MERGE CHANGE 1` — all `PARSE_ERROR`), and querying with `context: { change: "1" }` explicitly also failed differently (`EXEC_ERROR: Unsupported unary operation on column of type db::ColumnMask`). Very possible we're missing a step in the intended `newChange()` → `checkout()` → run → `COMMIT` cycle (see the [Plan](/plan)'s Architecture section) rather than TuringDB actually losing the commit. Needs more investigation before filing — start with `docs.turingdb.ai`'s versioning/changes docs.
+**Takeaway for `turtape`:** the full write cycle is `CHANGE NEW` → (writes, with `context: { change }`) → `COMMIT` (same context) → `CHANGE SUBMIT` (same context) — all four steps required to get data into the graph everyone else queries by default. `examples/src/sdk.ts` demonstrates this end-to-end.
