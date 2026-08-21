@@ -1,11 +1,3 @@
-# Self-built image: turingdbai/turingdb's `latest`/`nightly` Docker tags lag
-# actual releases by months (see docs: nightly-build-disabled,
-# latest-image-breaking-changes) because their CI bakes in a wheel file that
-# goes stale independently of PyPI. `pip install turingdb` always resolves
-# the newest PyPI release (verified in sync with GitHub releases), so we
-# build the same way upstream's own Dockerfile does but install from PyPI
-# instead of a locally copied wheel.
-
 # Stage 1: build the turingdb-visualizer frontend bundle (same as upstream)
 FROM node:22-slim AS visualizer-builder
 
@@ -20,29 +12,14 @@ RUN git clone --depth 1 https://github.com/turing-db/turingdb-visualizer.git . \
  && npm run build
 
 # Stage 2: runtime image
-FROM ubuntu:24.04
-
-ENV DEBIAN_FRONTEND=noninteractive
+FROM python:3.14-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
-        nodejs \
-        npm \
-    && rm -rf /var/lib/apt/lists/* \
- && npm install -g serve \
- && npm cache clean --force
+    && rm -rf /var/lib/apt/lists/*
 
-# uv manages the Python runtime the turingdb wheel targets.
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
-
-ENV UV_PYTHON_INSTALL_DIR=/opt/uv/python
-RUN uv python install 3.14
-
-RUN uv venv --python 3.14 /opt/turingdb-venv \
- && uv pip install --python /opt/turingdb-venv/bin/python turingdb
-
-ENV PATH=/opt/turingdb-venv/bin:$PATH
+RUN pip install --no-cache-dir turingdb
 
 COPY --from=visualizer-builder /vis/dist /opt/turingdb-visualizer
 
