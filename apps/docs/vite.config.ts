@@ -44,6 +44,14 @@ const config = defineConfig({
                   title: "latest image breaking changes",
                   to: "/turingdb-issues/latest-image-breaking-changes",
                 },
+                {
+                  title: 'CLI reports version "1.0"',
+                  to: "/turingdb-issues/cli-version-hardcoded",
+                },
+                {
+                  title: "Without -demon, writes are slow",
+                  to: "/turingdb-issues/commit-cpu-hang",
+                },
               ],
             },
           ],
@@ -65,6 +73,7 @@ const config = defineConfig({
             "dockerfile",
             "python",
             "yaml",
+            "cpp",
           ],
         },
       }),
