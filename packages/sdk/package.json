@@ -25,7 +25,9 @@
   "scripts": {
     "dev": "bun --watch ./src/index.ts",
     "build": "tsdown",
-    "test": "bun test",
+    "test": "bun test --isolate",
+    "test:unit": "bun test --isolate .unit.test",
+    "test:integration": "bun --config=bunfig.integration.toml test --isolate .integration.test",
     "size": "bun run build && size-limit"
   },
   "devDependencies": {

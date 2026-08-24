@@ -23,7 +23,10 @@ Run from the repo root (Turborepo orchestrates tasks across all workspaces via `
 - `bun run build` — build all apps/packages (`turbo run build`)
 - `bun run dev` — run all apps/packages in dev mode (`turbo run dev`)
 - `bun run check-types` — type-check all apps/packages, no emit (`turbo run check-types`)
-- `bun run test` — run tests across all apps/packages (`turbo run test`; a package only runs if it has its own `test` script — `packages/sdk` does, `bun test`)
+- `bun run test` — run all tests (unit + integration) across all apps/packages (`turbo run test`; a package only runs if it has its own `test` script — `packages/sdk` does, `bun test --isolate`)
+- `bun run test:unit` — unit tests only, mocked `fetch`, no Docker needed (`turbo run test:unit`; `packages/sdk` runs `bun test --isolate .unit.test`)
+- `bun run test:integration` — integration tests only, against a **live** local TuringDB (`turbo run test:integration`; `packages/sdk` runs `bun --config=bunfig.integration.toml test --isolate .integration.test`). Requires `docker compose up -d` first — each suite probes reachability and skips (not fails) with a clear message if nothing's listening on `:6666`. Coverage is disabled for this run (`bunfig.integration.toml`) since it only exercises the subset of code the integration scenarios touch, not the whole package.
+- Naming convention in `packages/sdk`: `*.unit.test.ts` (mocked, alongside the module) and `*.integration.test.ts` (real server, alongside the module) — both match `bun test`'s default discovery, so `bun run test` runs both together. `--isolate` (fresh global object per test file) is required whenever unit and integration files run in the same process — otherwise a unit test's mocked `globalThis.fetch` can leak into an integration test running right after it.
 - `bun run lint` — lint the whole repo with Biome (`biome lint .`) — **not** turbo-orchestrated per package; Biome runs across the monorepo in one pass
 - `bun run format` — format the whole repo with Biome (`biome format --write .`)
 - `bun run size` — check `packages/sdk`'s built bundle against its `size-limit` budget (10 kB; currently ~1 kB brotli)

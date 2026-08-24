@@ -72,9 +72,11 @@ bun run dev
 Run from the repo root (orchestrated across workspaces by [Turborepo](https://turborepo.dev)):
 
 ```sh
-bun run build         # build all apps/packages
-bun run test          # run tests (with coverage) across all packages
-bun run check-types   # type-check, no emit
+bun run build              # build all apps/packages
+bun run test               # run unit + integration tests across all packages
+bun run test:unit          # unit tests only (mocked, no Docker needed)
+bun run test:integration   # integration tests only — requires `docker compose up -d`
+bun run check-types        # type-check, no emit
 bun run lint          # lint the whole repo (Biome)
 bun run format        # format the whole repo (Biome)
 bun run size          # check package size against its size-limit budget

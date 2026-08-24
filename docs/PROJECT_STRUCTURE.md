@@ -26,24 +26,38 @@ packages/sdk/src/
 │   │   ├── types.ts             TurtapeProvider / TurtapeConfig / QueryContext / QueryResponse
 │   │   ├── errors.ts            TurtapeError
 │   │   ├── service.ts           createTurtapeService — wires a provider to queryRaw()/reconnect()
-│   │   └── index.ts             TurtapeSdk(config) entry point
+│   │   ├── index.ts             TurtapeSdk(config) entry point
+│   │   ├── index.unit.test.ts
+│   │   └── index.integration.test.ts   Real TuringDBProvider wired through TurtapeSdk
 │   │
 │   ├── plugin/                  The plugin abstraction itself, and generic ready-made plugins
 │   │   ├── index.ts             Plugin, NextFn, HttpRequestOptions, compose()
+│   │   ├── index.unit.test.ts
 │   │   ├── plugin.retry.ts      withRetry() backoff loop + retryPlugin()
-│   │   └── plugin.logger.ts     LogRecord (JSON) + logger(record).format().tty()
+│   │   ├── plugin.retry.unit.test.ts
+│   │   ├── plugin.logger.ts     LogRecord (JSON) + logger(record).format().tty()
+│   │   └── plugin.logger.unit.test.ts
 │   │
 │   ├── http-client/             Generic fetch + JSON-parsing transport
-│   │   └── index.ts             createHttpClient() — .use(plugin) chain, no business logic
+│   │   ├── index.ts             createHttpClient() — .use(plugin) chain, no business logic
+│   │   ├── index.unit.test.ts
+│   │   └── index.integration.test.ts   Real fetch: JSON parsing, a real 405 -> TurtapeError
 │   │
 │   └── turingdb-provider/       The concrete TuringDB implementation
 │       ├── index.ts             TuringDBProvider() — query()/reconnect(), also .use()-chainable
+│       ├── index.unit.test.ts
+│       ├── index.integration.test.ts    LIST GRAPH shape, real PARSE_ERROR, full write cycle
 │       ├── retry-plugin.ts      turingDBRetryPlugin — retryPlugin pre-configured for TuringDB
+│       ├── retry-plugin.unit.test.ts
+│       ├── retry-plugin.integration.test.ts
 │       ├── log-plugin.ts        turingDBLogPlugin — Cypher-verb-aware logging plugin
+│       ├── log-plugin.unit.test.ts
+│       ├── log-plugin.integration.test.ts   Confirms body.time is ms, not seconds
 │       └── status.ts            TuringDBErrorCode — the closed set of server error codes
 │
 └── utils/
-    └── test-support.ts          Shared bun:test helpers (mockFetch, captureRejection, ...)
+    ├── test-support.ts          Shared bun:test helpers for *.unit.test.ts (mockFetch, ...)
+    └── integration-support.ts   Shared helpers for *.integration.test.ts (reachability probe, ...)
 ```
 
 ### Module boundaries
@@ -105,3 +119,26 @@ subtract), `graph`/`change`/`commit` (the query's context, when set), `errorKind
 // or skip .tty() entirely — the record is already JSON, ship it wherever
 .use(turingDBLogPlugin((record) => appendFile("turtape.log", JSON.stringify(record) + "\n")));
 ```
+
+### `*.unit.test.ts` vs `*.integration.test.ts`
+
+Both live next to the module they test and both match `bun test`'s default file discovery (either
+suffix ends in `.test.ts`), so `bun run test` runs all of them together. `bun run test:unit` /
+`bun run test:integration` filter to one or the other by matching the suffix in the file path.
+
+- **`*.unit.test.ts`** mocks `fetch` (`@/utils/test-support.ts`) — fast, hermetic, no external state,
+  no Docker needed.
+- **`*.integration.test.ts`** runs against a **live** `docker compose up -d` TuringDB and exercises
+  the real wire protocol: the full `CHANGE NEW` → `CREATE` → `COMMIT` → `CHANGE SUBMIT` write cycle, a
+  real `PARSE_ERROR` response shape, a real HTTP 405, and confirming `body.time` (→ `serverMs`) is
+  genuinely present and sane end to end -- it's what confirmed `body.time` is milliseconds, not
+  seconds, a fact the mocked unit tests can't establish on their own since they supply that value
+  themselves. Each suite probes reachability first (`@/utils/integration-support.ts`) and *skips*
+  (not fails) with a clear message if nothing answers on `:6666`.
+
+**`--isolate` is required whenever both suffixes run in the same `bun test` process** (i.e. in
+`bun run test`, and in `packages/sdk/package.json`'s `test`/`test:unit`/`test:integration` scripts).
+Without it, a unit test's mocked `globalThis.fetch` can leak into an integration test that runs right
+after it in the same process -- confirmed directly: the 405 integration test above intermittently
+received a mocked `{ ok: true }` body instead of hitting the real server until `--isolate` (fresh
+global object per test file) was added.
