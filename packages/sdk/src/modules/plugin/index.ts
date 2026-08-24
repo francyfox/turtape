@@ -7,22 +7,37 @@ export interface HttpRequestOptions {
   params?: Record<string, string | undefined>;
 }
 
-/** Terminal handler a plugin chain bottoms out at, or the next plugin up the chain. */
+/** The next plugin in the chain, or the terminal handler once the chain ends. */
 export type NextFn = (request: HttpRequestOptions) => Promise<unknown>;
 
 /**
- * Angular `HttpInterceptor`-style hook, minus the DI: a plain function that
- * can inspect/rewrite the outgoing request, call `next` to continue the
- * chain, and inspect/rewrite (or catch) the result before returning it.
- * `compose()` nests them outer-to-inner around a terminal handler. Nothing
- * is attached by default -- a caller opts into a plugin with `.use()`, so
- * one that's never imported never ends up in the bundle.
+ * A function that can inspect/rewrite a request, call `next` to continue the chain, and
+ * inspect/rewrite (or catch) the result before returning it. **Nothing is attached by default** —
+ * a caller opts in with `.use()`.
+ *
+ * @example
+ * ```ts
+ * const logPlugin: Plugin = async (request, next) => {
+ *   console.log("->", request.path);
+ *   return next(request);
+ * };
+ * ```
  */
 export type Plugin = (
   request: HttpRequestOptions,
   next: NextFn,
 ) => Promise<unknown>;
 
+/**
+ * Nests plugins outer-to-inner around a terminal handler. Used internally by `HttpClient.use()` —
+ * *most callers won't need to call this directly.*
+ *
+ * @example
+ * ```ts
+ * const run = compose([logPlugin, retryPlugin()], sendRequest);
+ * await run({ path: "/query", body: "LIST GRAPH" });
+ * ```
+ */
 export const compose = (plugins: Plugin[], handler: NextFn): NextFn =>
   plugins.reduceRight<NextFn>(
     (next, plugin) => (request) => plugin(request, next),

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { TuringDBProvider } from "@/modules/turingdb-provider";
-import { turingDBRetryPlugin } from "@/modules/turingdb-provider/retry-plugin";
+import { retryPlugin } from "@/modules/turingdb-provider/retry-plugin";
 import {
   captureRejection,
   jsonResponse,
@@ -13,7 +13,7 @@ const emptyResult = {
   time: 0,
 };
 
-describe("turingDBRetryPlugin", () => {
+describe("retryPlugin", () => {
   test("retries a transport failure and eventually succeeds", async () => {
     let calls = 0;
     mockFetch(async () => {
@@ -23,7 +23,7 @@ describe("turingDBRetryPlugin", () => {
     });
 
     const result = await TuringDBProvider()
-      .use(turingDBRetryPlugin({ retries: 2, minDelayMs: 1, maxDelayMs: 2 }))
+      .use(retryPlugin({ retries: 2, minDelayMs: 1, maxDelayMs: 2 }))
       .query("LIST GRAPH");
 
     expect(calls).toBe(2);
@@ -39,7 +39,7 @@ describe("turingDBRetryPlugin", () => {
 
     await captureRejection(
       TuringDBProvider()
-        .use(turingDBRetryPlugin({ retries: 5 }))
+        .use(retryPlugin({ retries: 5 }))
         .query("NOT VALID"),
     );
 
@@ -57,7 +57,7 @@ describe("turingDBRetryPlugin", () => {
 
       await captureRejection(
         TuringDBProvider()
-          .use(turingDBRetryPlugin({ retries: 5, minDelayMs: 1 }))
+          .use(retryPlugin({ retries: 5, minDelayMs: 1 }))
           .query(cypher, { change: "1" }),
       );
 
@@ -74,7 +74,7 @@ describe("turingDBRetryPlugin", () => {
     });
 
     const result = await TuringDBProvider()
-      .use(turingDBRetryPlugin({ retries: 2, minDelayMs: 1, maxDelayMs: 2 }))
+      .use(retryPlugin({ retries: 2, minDelayMs: 1, maxDelayMs: 2 }))
       .query("CHANGE NEW");
 
     expect(calls).toBe(2);

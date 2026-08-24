@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { TurtapeSdk } from "@/modules/core";
 import { TuringDBProvider } from "@/modules/turingdb-provider";
+import { loggerPlugin } from "@/modules/turingdb-provider/log-plugin";
 import {
   isTuringDBReachable,
   TURINGDB_HOST,
@@ -32,5 +33,21 @@ describe.skipIf(!reachable)("TurtapeSdk (integration)", () => {
       provider: TuringDBProvider({ host: TURINGDB_HOST }),
     });
     expect(() => sdk.reconnect()).not.toThrow();
+  });
+
+  test("use() attached on the sdk reaches the provider's real HTTP pipeline, not just a mock", async () => {
+    const lines: string[] = [];
+    const sdk = TurtapeSdk({
+      provider: TuringDBProvider({ host: TURINGDB_HOST }),
+    }).use(
+      loggerPlugin((record, logger) =>
+        logger(record).tty({ color: false, write: (l) => lines.push(l) }),
+      ),
+    );
+
+    await sdk.queryRaw("LIST GRAPH");
+
+    expect(lines).toHaveLength(1);
+    expect(lines[0]).toContain("✓");
   });
 });

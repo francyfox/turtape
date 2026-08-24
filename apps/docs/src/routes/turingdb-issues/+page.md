@@ -15,6 +15,7 @@ Each page: repro, expected vs. actual, and how confident we are it's actually a 
 - [`HISTORY` keyword doesn't parse — use `CALL db.history()` instead](/turingdb-issues/history-syntax-mismatch) — docs show a bare `HISTORY` keyword that doesn't parse; not a version-drift artifact, looks wrong from the start.
 - [Inline pattern filter + `count()` crashes](/turingdb-issues/inline-filter-count-crash) — internal `ColumnMask` dispatch error leaks a raw C++ type name; `WHERE` works fine as a substitute. Confirmed still present on current `main`.
 - [Without `-demon`, writes are 500-5000x slower](/turingdb-issues/commit-cpu-hang) — running `turingdb start` without `-demon` (as upstream's own `run_visualizer.sh` does) turns an 0.1s `COMMIT`/`CHANGE SUBMIT` into 8-10 minutes, pegging one HTTP worker thread at ~100% CPU. Root cause not fully diagnosed (no debugger in the runtime image), but the fix (`-demon`) is confirmed and repeatable.
+- [Change tracking gets stuck (`CHANGE_NOT_FOUND`)](/turingdb-issues/change-not-found) — after enough write traffic, `CHANGE SUBMIT` (then eventually every `CHANGE` operation) starts failing on changes that were just created, with no error logged anywhere. Root cause not confirmed, but a workaround is: `CREATE GRAPH <throwaway-name>` resets the stuck state without a container restart.
 
 ## Resolved (kept for reference)
 

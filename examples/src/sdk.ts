@@ -1,4 +1,4 @@
-import { TuringDBProvider, TurtapeSdk, turingDBLogPlugin } from "@turtape/sdk";
+import { loggerPlugin, TuringDBProvider, TurtapeSdk } from "@turtape/sdk";
 
 let timer = 0;
 function startTimer() {
@@ -10,8 +10,8 @@ function stopTimer(fnName: string) {
   console.log(`[${fnName}] ${performance.now() - timer} ms`);
 }
 const sdk = TurtapeSdk({
-  provider: TuringDBProvider().use(turingDBLogPlugin()),
-});
+  provider: TuringDBProvider(),
+}).use(loggerPlugin());
 
 // console.log(await sdk.queryRaw("LIST GRAPH"));
 // const hasPam = await sdk.queryRaw(

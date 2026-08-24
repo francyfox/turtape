@@ -6,6 +6,7 @@ import {
 } from "@/modules/plugin";
 
 export interface HttpClientOptions {
+  /** Base URL every request is resolved against. */
   host: string;
   /** Static headers applied to every request (e.g. auth). */
   headers?: Record<string, string>;
@@ -15,26 +16,28 @@ export type { HttpRequestOptions };
 
 export interface HttpClient {
   /**
-   * Attach a plugin -- Elysia-`.use()`-style plugin chaining, no DI (see
-   * `@/modules/plugin`). Nothing is attached by default: a
-   * caller opts into exactly the plugins it needs, so an unused one (retry,
-   * logging, ...) never ends up in the bundle. Plugins run outer-to-inner in
-   * attachment order: the first `.use()` wraps every one after it, so e.g.
-   * `.use(retryPlugin(...)).use(logPlugin)` re-runs `logPlugin` on every
-   * retried attempt, not just the first. Returns the same client so calls
-   * chain.
+   * Attaches a plugin to the request pipeline. **The first `.use()` wraps every plugin after
+   * it**, so order matters — see `@/modules/plugin`. Returns the same client so calls chain.
+   *
+   * @example
+   * ```ts
+   * client.use(retryPlugin()).use(logPlugin());
+   * ```
    */
   use(plugin: Plugin): HttpClient;
   request<T>(request: HttpRequestOptions): Promise<T>;
 }
 
 /**
- * Generic fetch + JSON-parsing plumbing, shared by any HTTP-based provider.
- * Everything else -- retries, auth refresh, logging, and protocol-specific
- * concerns like request body shape or what counts as an application-level
- * error -- is attached with `.use()`, not built in here. Only the raw
- * transport generalizes; create one of these per provider, don't share an
- * instance.
+ * Generic fetch + JSON-parsing transport shared by any HTTP-based provider. Retries, logging,
+ * auth refresh, and other protocol-specific concerns are added with `.use()`, not built in here.
+ * *Create one per provider* — its plugin chain isn't meant to be shared across instances.
+ *
+ * @example
+ * ```ts
+ * const client = createHttpClient({ host: "http://localhost:6666" });
+ * const result = await client.request({ path: "/query", body: "LIST GRAPH" });
+ * ```
  */
 export const createHttpClient = (options: HttpClientOptions): HttpClient => {
   const send = async (request: HttpRequestOptions): Promise<unknown> => {

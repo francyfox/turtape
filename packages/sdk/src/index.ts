@@ -9,12 +9,12 @@ import {
   type TtyOptions,
 } from "@/modules/plugin/plugin.logger.ts";
 import {
+  loggerPlugin,
+  retryPlugin,
   type TuringDBLogHandler,
   TuringDBProvider,
   type TuringDBProviderInstance,
   type TuringDBRetryPluginOptions,
-  turingDBLogPlugin,
-  turingDBRetryPlugin,
 } from "@/modules/turingdb-provider";
 import { TuringDBErrorCode } from "@/modules/turingdb-provider/status";
 
@@ -23,7 +23,9 @@ export {
   type LoggerFactory,
   type LogRecord,
   logger,
+  loggerPlugin,
   type Plugin,
+  retryPlugin,
   type TtyOptions,
   TuringDBErrorCode,
   type TuringDBLogHandler,
@@ -33,6 +35,4 @@ export {
   type TurtapeConfig,
   TurtapeError,
   TurtapeSdk,
-  turingDBLogPlugin,
-  turingDBRetryPlugin,
 };

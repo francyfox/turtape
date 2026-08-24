@@ -104,3 +104,25 @@ bun --hot ./index.ts
 ```
 
 For more information, read the Bun API docs in `node_modules/bun-types/docs/**.mdx`.
+
+## Comment style
+
+- **Prefer JSDoc (`/** */`) over plain `//` comments.** Plain `//` comments are for the rare case
+  that genuinely needs one — a fix that must not be reverted, a non-obvious gotcha, something a
+  reader must not skip. Everything else that documents an exported function, type, or interface
+  goes in a JSDoc block instead.
+- **Write for someone new to the codebase, not a co-author.** A JSDoc block on an exported function
+  is short: one or two plain sentences on what it does, plus a minimal `@example` showing how to
+  call/wire it up. It's not the place for implementation rationale, history, or edge-case
+  reasoning — a reader who just wants to use the function shouldn't have to read past that to find
+  out how.
+- **Document arguments on the type, not the call site.** If a function takes an options object,
+  document each field with its own short JSDoc comment on the interface/type itself, not with
+  `@param` prose repeated on every function that accepts it.
+- **Format JSDoc as markdown — editors render it that way.** VS Code, WebStorm/IntelliJ, and
+  TypeDoc all show JSDoc hover tooltips as rendered markdown, not plain text. Use `**bold**` for
+  the key term or constraint in a sentence, `*italic*` sparingly for emphasis, and fenced code
+  blocks with a language tag for `@example` (` ```ts ... ``` `, not an unfenced indented block) —
+  fenced blocks get real syntax highlighting in the tooltip, plain ones don't. A relevant emoji is
+  fine for scanability (e.g. ⚠️ on a warning that must not be missed) — don't decorate for its own
+  sake.

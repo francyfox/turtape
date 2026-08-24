@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { TuringDBProvider } from "@/modules/turingdb-provider";
-import { turingDBLogPlugin } from "@/modules/turingdb-provider/log-plugin";
-import { turingDBRetryPlugin } from "@/modules/turingdb-provider/retry-plugin";
+import { loggerPlugin } from "@/modules/turingdb-provider/log-plugin";
+import { retryPlugin } from "@/modules/turingdb-provider/retry-plugin";
 import {
   captureConsoleLog,
   captureRejection,
@@ -15,14 +15,14 @@ const emptyResult = {
   time: 0,
 };
 
-describe("turingDBLogPlugin", () => {
+describe("loggerPlugin", () => {
   test("default handler renders a ✓ line for a real success", async () => {
     mockFetch(async () => jsonResponse(emptyResult));
     const lines: string[] = [];
 
     await TuringDBProvider()
       .use(
-        turingDBLogPlugin((record, logger) =>
+        loggerPlugin((record, logger) =>
           logger(record).tty({ color: false, write: (l) => lines.push(l) }),
         ),
       )
@@ -42,7 +42,7 @@ describe("turingDBLogPlugin", () => {
     await captureRejection(
       TuringDBProvider()
         .use(
-          turingDBLogPlugin((record) => {
+          loggerPlugin((record) => {
             seen = record;
           }),
         )
@@ -63,7 +63,7 @@ describe("turingDBLogPlugin", () => {
     await captureRejection(
       TuringDBProvider()
         .use(
-          turingDBLogPlugin((record) => {
+          loggerPlugin((record) => {
             seen = record;
           }),
         )
@@ -83,7 +83,7 @@ describe("turingDBLogPlugin", () => {
     await captureRejection(
       TuringDBProvider()
         .use(
-          turingDBLogPlugin((record) => {
+          loggerPlugin((record) => {
             seen = record;
           }),
         )
@@ -102,7 +102,7 @@ describe("turingDBLogPlugin", () => {
     await captureRejection(
       TuringDBProvider()
         .use(
-          turingDBLogPlugin((record) => {
+          loggerPlugin((record) => {
             seen = record;
           }),
         )
@@ -120,7 +120,7 @@ describe("turingDBLogPlugin", () => {
 
     await TuringDBProvider()
       .use(
-        turingDBLogPlugin((record) => {
+        loggerPlugin((record) => {
           onSuccess = record;
         }),
       )
@@ -143,7 +143,7 @@ describe("turingDBLogPlugin", () => {
     await captureRejection(
       TuringDBProvider()
         .use(
-          turingDBLogPlugin((record) => {
+          loggerPlugin((record) => {
             onFailure = record;
           }),
         )
@@ -160,7 +160,7 @@ describe("turingDBLogPlugin", () => {
 
     await TuringDBProvider()
       .use(
-        turingDBLogPlugin((record) => {
+        loggerPlugin((record) => {
           seen = record;
         }),
       )
@@ -177,7 +177,7 @@ describe("turingDBLogPlugin", () => {
 
     await TuringDBProvider()
       .use(
-        turingDBLogPlugin((record) => {
+        loggerPlugin((record) => {
           seen = JSON.parse(JSON.stringify(record));
         }),
       )
@@ -186,7 +186,7 @@ describe("turingDBLogPlugin", () => {
     expect(seen).toMatchObject({ level: "info", tag: "turtape", verb: "LIST" });
   });
 
-  test("attached before turingDBRetryPlugin, logs once per query() call after retries settle", async () => {
+  test("attached before retryPlugin, logs once per query() call after retries settle", async () => {
     let calls = 0;
     mockFetch(async () => {
       calls++;
@@ -197,11 +197,11 @@ describe("turingDBLogPlugin", () => {
 
     await TuringDBProvider()
       .use(
-        turingDBLogPlugin((record) => {
+        loggerPlugin((record) => {
           records.push(record);
         }),
       )
-      .use(turingDBRetryPlugin({ retries: 3, minDelayMs: 1, maxDelayMs: 2 }))
+      .use(retryPlugin({ retries: 3, minDelayMs: 1, maxDelayMs: 2 }))
       .query("LIST GRAPH");
 
     expect(calls).toBe(3);
@@ -213,7 +213,7 @@ describe("turingDBLogPlugin", () => {
     mockFetch(async () => jsonResponse(emptyResult));
 
     const lines = await captureConsoleLog(() =>
-      TuringDBProvider().use(turingDBLogPlugin()).query("LIST GRAPH"),
+      TuringDBProvider().use(loggerPlugin()).query("LIST GRAPH"),
     );
 
     expect(lines).toHaveLength(1);
