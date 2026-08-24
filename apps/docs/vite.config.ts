@@ -7,6 +7,8 @@ const config = defineConfig({
     sveltepress({
       theme: defaultTheme({
         navbar: [
+          { title: "Development", to: "/development" },
+          { title: "Project Structure", to: "/project-structure" },
           { title: "Plan", to: "/plan" },
           { title: "TuringDB Issues", to: "/turingdb-issues" },
         ],
@@ -51,6 +53,10 @@ const config = defineConfig({
                 {
                   title: "Without -demon, writes are slow",
                   to: "/turingdb-issues/commit-cpu-hang",
+                },
+                {
+                  title: "Change tracking gets stuck",
+                  to: "/turingdb-issues/change-not-found",
                 },
               ],
             },

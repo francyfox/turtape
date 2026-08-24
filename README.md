@@ -24,42 +24,14 @@
   <img src="https://img.shields.io/badge/status-work%20in%20progress-yellow?style=for-the-badge" alt="Status: work in progress" />
 </p>
 
-## Table of contents
+`turtape` is a toolkit for graph databases — CLI, SDK, and a query layer.
 
-- [What is this?](#what-is-this)
-- [Monorepo layout](#monorepo-layout)
-- [Getting started](#getting-started)
-- [Development](#development)
-- [License](#license)
+**Supported DB:** [TuringDB](https://turingdb.ai), an in-memory columnar graph database with an
+OpenCypher-subset query language. **`@turtape/sdk`** is a runtime-agnostic client (plain `fetch`,
+zero dependencies — works the same on Bun and Node.js) that talks to a TuringDB daemon over its
+HTTP/JSON protocol.
 
-## What is this?
-
-`turtape` is a toolkit for [TuringDB](https://turingdb.ai), an in-memory columnar graph
-database with an OpenCypher-subset query language:
-
-- **`@turtape/sdk`** — a runtime-agnostic client (plain `fetch`, zero dependencies — works the same on
-  Bun and Node.js) that talks to a TuringDB daemon over its HTTP/JSON protocol.
-- **A CLI**, a query builder or ORM for OpenCypher, and schema migrations, all still to come.
-
-TuringDB connects as a *provider* behind a common interface (mirroring drizzle-kit's dialect/driver
-split) rather than being hardcoded through the stack — see the plan below for the reasoning.
-
-Full scope, sequencing, and the confirmed HTTP wire protocol live in **[the plan](apps/docs/src/routes/plan/+page.md)**
-— read it before touching `packages/sdk`.
-
-## Monorepo layout
-
-| Path                             | What                                                                                   |
-| -------------------------------- | --------------------------------------------------------------------------------------- |
-| `apps/docs`                      | The documentation site ([SveltePress](https://sveltepress.site)) — deployed to GitHub Pages via `.github/workflows/deploy-docs.yml` on push to `main`/`master`. |
-| `packages/sdk`                   | `@turtape/sdk` — the TuringDB client.                                                   |
-| `docker/`, `docker-compose.yml`  | A local TuringDB instance for development and tests.                                    |
-
-See [`PROJECT_STRUCTURE.md`](docs/PROJECT_STRUCTURE.md) for a deeper look, including `packages/sdk`'s
-internal module layout (`core` / `http-client` / `plugin` / `turingdb-provider`) and how its
-opt-in `.use()` plugin mechanism works.
-
-## Getting started
+## Quick start
 
 ```sh
 bun install
@@ -67,20 +39,14 @@ docker compose up -d   # local TuringDB — query API on :6666, visualizer on :8
 bun run dev
 ```
 
-## Development
+## Docs
 
-Run from the repo root (orchestrated across workspaces by [Turborepo](https://turborepo.dev)):
+Full documentation lives at **[francyfox.github.io/turtape](https://francyfox.github.io/turtape/)**:
 
-```sh
-bun run build              # build all apps/packages
-bun run test               # run unit + integration tests across all packages
-bun run test:unit          # unit tests only (mocked, no Docker needed)
-bun run test:integration   # integration tests only — requires `docker compose up -d`
-bun run check-types        # type-check, no emit
-bun run lint          # lint the whole repo (Biome)
-bun run format        # format the whole repo (Biome)
-bun run size          # check package size against its size-limit budget
-```
+- **[Development](https://francyfox.github.io/turtape/development)** — commands, monorepo layout, running tests
+- **[Project Structure](https://francyfox.github.io/turtape/project-structure)** — `packages/sdk`'s internal module layout and plugin system
+- **[Plan](https://francyfox.github.io/turtape/plan)** — full scope, sequencing, the confirmed TuringDB wire protocol
+- **[TuringDB Issues](https://francyfox.github.io/turtape/turingdb-issues)** — confirmed bugs/quirks found while building against TuringDB
 
 See [`CLAUDE.md`](CLAUDE.md) for the fuller architecture/commands reference.
 
