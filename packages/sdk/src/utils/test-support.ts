@@ -27,3 +27,17 @@ export const mockFetch = (
 ) => {
   globalThis.fetch = mock(impl) as unknown as typeof fetch;
 };
+
+/** Runs `fn`, capturing every `console.log` call (as its first argument, stringified) made
+ * during it. Restores the original `console.log` afterward, even if `fn` throws/rejects. */
+export async function captureConsoleLog(fn: () => unknown): Promise<string[]> {
+  const original = console.log;
+  const lines: string[] = [];
+  console.log = (...args: unknown[]) => lines.push(String(args[0]));
+  try {
+    await fn();
+  } finally {
+    console.log = original;
+  }
+  return lines;
+}

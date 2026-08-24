@@ -24,6 +24,14 @@
   <img src="https://img.shields.io/badge/status-work%20in%20progress-yellow?style=for-the-badge" alt="Status: work in progress" />
 </p>
 
+## Table of contents
+
+- [What is this?](#what-is-this)
+- [Monorepo layout](#monorepo-layout)
+- [Getting started](#getting-started)
+- [Development](#development)
+- [License](#license)
+
 ## What is this?
 
 `turtape` is a toolkit for [TuringDB](https://turingdb.ai), an in-memory columnar graph
@@ -46,6 +54,10 @@ Full scope, sequencing, and the confirmed HTTP wire protocol live in **[the plan
 | `apps/docs`                      | The documentation site ([SveltePress](https://sveltepress.site)) — deployed to GitHub Pages via `.github/workflows/deploy-docs.yml` on push to `main`/`master`. |
 | `packages/sdk`                   | `@turtape/sdk` — the TuringDB client.                                                   |
 | `docker/`, `docker-compose.yml`  | A local TuringDB instance for development and tests.                                    |
+
+See [`PROJECT_STRUCTURE.md`](docs/PROJECT_STRUCTURE.md) for a deeper look, including `packages/sdk`'s
+internal module layout (`core` / `http-client` / `plugin` / `turingdb-provider`) and how its
+opt-in `.use()` plugin mechanism works.
 
 ## Getting started
 

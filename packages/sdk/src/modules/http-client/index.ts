@@ -2,8 +2,8 @@ import { TurtapeError } from "@/modules/core/errors";
 import {
   compose,
   type HttpRequestOptions,
-  type Middleware,
-} from "@/modules/http-client/middleware";
+  type Plugin,
+} from "@/modules/plugin";
 
 export interface HttpClientOptions {
   host: string;
@@ -15,14 +15,16 @@ export type { HttpRequestOptions };
 
 export interface HttpClient {
   /**
-   * Attach a middleware -- Elysia-`.use()`-style plugin chaining, no DI (see
-   * `@/modules/http-client/middleware`). Middlewares run outer-to-inner in
+   * Attach a plugin -- Elysia-`.use()`-style plugin chaining, no DI (see
+   * `@/modules/plugin`). Nothing is attached by default: a
+   * caller opts into exactly the plugins it needs, so an unused one (retry,
+   * logging, ...) never ends up in the bundle. Plugins run outer-to-inner in
    * attachment order: the first `.use()` wraps every one after it, so e.g.
-   * `.use(retryMiddleware(...)).use(logMiddleware)` re-runs `logMiddleware`
-   * on every retried attempt, not just the first. Returns the same client
-   * so calls chain.
+   * `.use(retryPlugin(...)).use(logPlugin)` re-runs `logPlugin` on every
+   * retried attempt, not just the first. Returns the same client so calls
+   * chain.
    */
-  use(middleware: Middleware): HttpClient;
+  use(plugin: Plugin): HttpClient;
   request<T>(request: HttpRequestOptions): Promise<T>;
 }
 
@@ -65,15 +67,15 @@ export const createHttpClient = (options: HttpClientOptions): HttpClient => {
     return body;
   };
 
-  const middlewares: Middleware[] = [];
+  const plugins: Plugin[] = [];
 
   const client: HttpClient = {
-    use(middleware) {
-      middlewares.push(middleware);
+    use(plugin) {
+      plugins.push(plugin);
       return client;
     },
     request: <T>(request: HttpRequestOptions) =>
-      compose(middlewares, send)(request) as Promise<T>,
+      compose(plugins, send)(request) as Promise<T>,
   };
 
   return client;

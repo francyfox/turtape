@@ -1,0 +1,64 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"58e82fea-f0c9-4884-90fe-984add87acb1\" name=\"Changes\" comment=\"feat: docker no cache\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/docker-compose.yml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/docker-compose.yml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/docker/db.Dockerfile\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/docker/db.Dockerfile\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/packages/sdk/src/index.ts\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/packages/sdk/src/index.ts\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.test.ts\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.test.ts\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.ts\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.ts\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.test.ts\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.test.ts\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.ts\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.ts\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"TypeScript File\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;francyfox&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/francyfox/turtape.git&quot;,\n    &quot;accountId&quot;: &quot;68133e03-dc08-494d-82bd-09eb6e0b8739&quot;\n  }\n}</component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 1\n}</component>\n  <component name=\"ProjectId\" id=\"3I7T38zPGK6ERZO6I6UU3Qpb0Cg\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;Settings.Biome&quot;,\n    &quot;ts.external.directory.path&quot;: &quot;/home/fox/WebstormProjects/turtape/node_modules/typescript/lib&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/packages/sdk/src/utils\" />\n      <recent name=\"$PROJECT_DIR$/examples\" />\n      <recent name=\"$PROJECT_DIR$/apps/docs/static\" />\n      <recent name=\"$PROJECT_DIR$/packages/sdk/src\" />\n      <recent name=\"$PROJECT_DIR$/packages\" />\n    </key>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-WS-251.29188.71\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"58e82fea-f0c9-4884-90fe-984add87acb1\" name=\"Changes\" comment=\"\" />\n      <created>1787114404824</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1787114404824</updated>\n      <workItem from=\"1787114405860\" duration=\"17637000\" />\n      <workItem from=\"1787200614475\" duration=\"18827000\" />\n      <workItem from=\"1787290242953\" duration=\"12431000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"feat: ci deploy docs\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1787142158212</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1787142158212</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"feat: ci deploy docs\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1787142508938</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1787142508938</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"feat: ci deploy docs\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1787142519237</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1787142519237</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"feat: turingDB errors\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1787219783959</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1787219783959</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"feat: docker 1.36\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1787296007939</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1787296007940</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"feat: docker no cache\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1787296643575</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1787296643575</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"7\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"feat: ci deploy docs\" />\n    <MESSAGE value=\"feat: turingDB errors\" />\n    <MESSAGE value=\"feat: docker 1.36\" />\n    <MESSAGE value=\"feat: docker no cache\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"feat: docker no cache\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision e69ad371d87bc3e33dade2c1ecc7c8f00f6a1ca3)
++++ b/.idea/workspace.xml	(date 1787307098718)
+@@ -4,16 +4,7 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="58e82fea-f0c9-4884-90fe-984add87acb1" name="Changes" comment="feat: docker no cache">
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/docker/db.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/db.Dockerfile" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/sdk/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/index.ts" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.test.ts" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.ts" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.test.ts" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.ts" afterDir="false" />
+-    </list>
++    <list default="true" id="58e82fea-f0c9-4884-90fe-984add87acb1" name="Changes" comment="fix: demon bug" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -93,7 +84,7 @@
+       <updated>1787114404824</updated>
+       <workItem from="1787114405860" duration="17637000" />
+       <workItem from="1787200614475" duration="18827000" />
+-      <workItem from="1787290242953" duration="12431000" />
++      <workItem from="1787290242953" duration="12756000" />
+     </task>
+     <task id="LOCAL-00001" summary="feat: ci deploy docs">
+       <option name="closed" value="true" />
+@@ -143,7 +134,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1787296643575</updated>
+     </task>
+-    <option name="localTasksCounter" value="7" />
++    <task id="LOCAL-00007" summary="fix: demon bug">
++      <option name="closed" value="true" />
++      <created>1787307098417</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1787307098417</updated>
++    </task>
++    <option name="localTasksCounter" value="8" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -165,6 +164,7 @@
+     <MESSAGE value="feat: turingDB errors" />
+     <MESSAGE value="feat: docker 1.36" />
+     <MESSAGE value="feat: docker no cache" />
+-    <option name="LAST_COMMIT_MESSAGE" value="feat: docker no cache" />
++    <MESSAGE value="fix: demon bug" />
++    <option name="LAST_COMMIT_MESSAGE" value="fix: demon bug" />
+   </component>
+ </project>
+\ No newline at end of file

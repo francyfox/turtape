@@ -1,3 +1,5 @@
+import type { HttpRequestOptions, Plugin } from "@/modules/plugin/index.ts";
+
 export interface RetryOptions {
   retries?: number;
   minDelayMs?: number;
@@ -41,3 +43,27 @@ export async function withRetry<T>(
     }
   }
 }
+
+export interface RetryPluginOptions {
+  retries?: number;
+  minDelayMs?: number;
+  maxDelayMs?: number;
+  /** Unlike the underlying `RetryOptions.isRetryable`, also sees the request
+   * that failed -- lets a caller exempt specific requests (e.g. non-idempotent
+   * writes) from retry based on what's actually being sent, not just the error. */
+  isRetryable?: (error: unknown, request: HttpRequestOptions) => boolean;
+}
+
+export const retryPlugin =
+  (options: RetryPluginOptions = {}): Plugin =>
+  (request, next) => {
+    const retryOptions: RetryOptions = {
+      retries: options.retries,
+      minDelayMs: options.minDelayMs,
+      maxDelayMs: options.maxDelayMs,
+      isRetryable: options.isRetryable
+        ? (error: unknown) => options.isRetryable?.(error, request) ?? false
+        : undefined,
+    };
+    return withRetry(() => next(request), retryOptions);
+  };

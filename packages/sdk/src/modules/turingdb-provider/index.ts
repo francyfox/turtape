@@ -1,4 +1,3 @@
-import * as console from "node:console";
 import { TurtapeError } from "@/modules/core/errors";
 import type {
   QueryContext,
@@ -6,44 +5,40 @@ import type {
   TurtapeProvider,
 } from "@/modules/core/types";
 import { createHttpClient } from "@/modules/http-client";
-import {
-  type HttpRequestOptions,
-  type RetryMiddlewareOptions,
-  retryMiddleware,
-} from "@/modules/http-client/middleware";
+import type { Plugin } from "@/modules/plugin";
 import type { TuringDBErrorCode } from "@/modules/turingdb-provider/status";
+
+export type { TuringDBLogHandler } from "@/modules/turingdb-provider/log-plugin";
+export { turingDBLogPlugin } from "@/modules/turingdb-provider/log-plugin";
+export type { TuringDBRetryPluginOptions } from "@/modules/turingdb-provider/retry-plugin";
+export { turingDBRetryPlugin } from "@/modules/turingdb-provider/retry-plugin";
 
 export interface TuringDBProviderOptions {
   host?: string;
   token?: string;
-  retry?: RetryMiddlewareOptions;
 }
 
-// `COMMIT` and `CHANGE SUBMIT` mutate server state, and `CHANGE SUBMIT` in
-// particular can take long enough to respond that the client sees a
-// transport error (dropped connection, timeout) *after* the write already
-// went through server-side -- confirmed against a live server: retrying it
-// then re-submits an already-applied change, and the server rightly answers
-// `CHANGE_NOT_FOUND` for the duplicate, which looks like a failure even
-// though the original write succeeded (see docs/turingdb-issues). Every
-// other query here is either read-only or `CHANGE NEW`, neither of which has
-// this half-applied-then-repeated-request risk, so they stay safe to retry
-// blindly on any transport error.
-const NON_IDEMPOTENT = /^\s*(commit|change\s+submit)\b/i;
-
-const isRetryable = (_error: unknown, request: HttpRequestOptions) =>
-  !(typeof request.body === "string" && NON_IDEMPOTENT.test(request.body));
+export interface TuringDBProviderInstance extends TurtapeProvider {
+  /**
+   * Attach a plugin (retry, logging, or your own) to the underlying HTTP
+   * client -- see `@/modules/plugin`. Nothing is attached by
+   * default: pull in `turingDBRetryPlugin`/`turingDBLogPlugin` (or a custom
+   * `Plugin`) and `.use()` only what you need, so an unused one doesn't end
+   * up in the bundle. Returns the same instance so calls chain.
+   */
+  use(plugin: Plugin): TuringDBProviderInstance;
+}
 
 export const TuringDBProvider = (
   options: TuringDBProviderOptions = {},
-): TurtapeProvider => {
+): TuringDBProviderInstance => {
   const host = options.host ?? "http://localhost:6666";
   const token = options.token ?? "";
 
   const http = createHttpClient({
     host,
     headers: token ? { authorization: `Bearer ${token}` } : undefined,
-  }).use(retryMiddleware({ isRetryable, ...options.retry }));
+  });
 
   const query = async (
     cypher: string,
@@ -58,7 +53,6 @@ export const TuringDBProvider = (
         commit: context.commit,
       },
     });
-    console.log(cypher);
 
     // Confirmed against a live server: query errors (bad Cypher, write outside
     // a change, ...) come back as HTTP 200 with an `error` field, not a
@@ -76,12 +70,18 @@ export const TuringDBProvider = (
     return body;
   };
 
-  return {
+  const provider: TuringDBProviderInstance = {
     name: "turingdb",
     query,
     // No-op: fetch() opens a fresh connection per call, there's no persistent
     // socket/session to discard. Exists so callers can write transport-agnostic
-    // recovery code (matches upstream's HTTPClient.reconnect()).
+    // recovery code (matches upstreams HTTPClient.reconnect()).
     reconnect: () => {},
+    use(plugin) {
+      http.use(plugin);
+      return provider;
+    },
   };
+
+  return provider;
 };

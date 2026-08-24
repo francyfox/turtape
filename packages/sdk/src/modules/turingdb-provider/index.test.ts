@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { TurtapeError } from "@/modules/core/errors";
 import { TuringDBProvider } from "@/modules/turingdb-provider";
 import {
+  captureConsoleLog,
   captureRejection,
   jsonResponse,
   mockFetch,
@@ -88,70 +89,29 @@ describe("TuringDBProvider", () => {
     expect(result).toEqual(body);
   });
 
-  test("retries a transport failure and eventually succeeds", async () => {
+  test("does not retry a transport failure by default -- no plugin attached", async () => {
     let calls = 0;
     mockFetch(async () => {
       calls++;
-      if (calls < 2) throw new Error("connection refused");
-      return jsonResponse(emptyResult);
+      throw new Error("connection refused");
     });
 
-    const result = await TuringDBProvider({
-      retry: { retries: 2, minDelayMs: 1, maxDelayMs: 2 },
-    }).query("LIST GRAPH");
-
-    expect(calls).toBe(2);
-    expect(result).toEqual(emptyResult);
-  });
-
-  test("does not retry an application-level error (it's thrown after the request already succeeded)", async () => {
-    let calls = 0;
-    mockFetch(async () => {
-      calls++;
-      return jsonResponse({ ...emptyResult, error: "PARSE_ERROR" });
-    });
-
-    await captureRejection(
-      TuringDBProvider({ retry: { retries: 5 } }).query("NOT VALID"),
-    );
-
+    await captureRejection(TuringDBProvider().query("LIST GRAPH"));
     expect(calls).toBe(1);
   });
 
-  test.each(["COMMIT", "  change submit  ", "CHANGE SUBMIT"])(
-    "does not retry %j on a transport failure -- a retried submit could be a duplicate of one that already went through",
-    async (cypher) => {
-      let calls = 0;
-      mockFetch(async () => {
-        calls++;
-        throw new Error("connection refused");
-      });
+  test("logs nothing by default -- no plugin attached", async () => {
+    mockFetch(async () => jsonResponse(emptyResult));
+    const lines = await captureConsoleLog(() =>
+      TuringDBProvider().query("LIST GRAPH"),
+    );
+    expect(lines.some((l) => l.includes("[turtape]"))).toBe(false);
+  });
 
-      await captureRejection(
-        TuringDBProvider({ retry: { retries: 5, minDelayMs: 1 } }).query(
-          cypher,
-          { change: "1" },
-        ),
-      );
-
-      expect(calls).toBe(1);
-    },
-  );
-
-  test("still retries CHANGE NEW and reads on a transport failure", async () => {
-    let calls = 0;
-    mockFetch(async () => {
-      calls++;
-      if (calls < 2) throw new Error("connection refused");
-      return jsonResponse(emptyResult);
-    });
-
-    const result = await TuringDBProvider({
-      retry: { retries: 2, minDelayMs: 1, maxDelayMs: 2 },
-    }).query("CHANGE NEW");
-
-    expect(calls).toBe(2);
-    expect(result).toEqual(emptyResult);
+  test("use() returns the same provider instance, so calls chain", async () => {
+    const provider = TuringDBProvider();
+    const chained = provider.use(async (request, next) => next(request));
+    expect(chained).toBe(provider);
   });
 
   test("reconnect() is a no-op that does not throw", () => {

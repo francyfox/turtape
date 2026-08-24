@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { TurtapeError } from "@/modules/core/errors";
 import { createHttpClient } from "@/modules/http-client";
-import { retryMiddleware } from "@/modules/http-client/middleware";
+import { retryPlugin } from "@/modules/plugin/plugin.retry.ts";
 import {
   captureRejection,
   jsonResponse,
@@ -113,7 +113,7 @@ describe("createHttpClient", () => {
     });
 
     const client = createHttpClient({ host: "http://localhost:6666" }).use(
-      retryMiddleware({
+      retryPlugin({
         retries: 3,
         minDelayMs: 1,
         maxDelayMs: 2,

@@ -1,4 +1,4 @@
-import { TuringDBProvider, TurtapeSdk } from "@turtape/sdk";
+import { TuringDBProvider, TurtapeSdk, turingDBLogPlugin } from "@turtape/sdk";
 
 let timer = 0;
 function startTimer() {
@@ -10,7 +10,7 @@ function stopTimer(fnName: string) {
   console.log(`[${fnName}] ${performance.now() - timer} ms`);
 }
 const sdk = TurtapeSdk({
-  provider: TuringDBProvider(),
+  provider: TuringDBProvider().use(turingDBLogPlugin()),
 });
 
 // console.log(await sdk.queryRaw("LIST GRAPH"));
@@ -20,7 +20,6 @@ const sdk = TurtapeSdk({
 // console.log(hasPam);
 
 async function createPam() {
-  startTimer();
   const newChange = await sdk.queryRaw("CHANGE NEW");
   const changeId = String(newChange.data[0]?.[0]?.[0]);
 
@@ -53,8 +52,7 @@ async function createPam() {
 
   await sdk.queryRaw("COMMIT", { change: changeId });
   await sdk.queryRaw("CHANGE SUBMIT", { change: changeId });
-  console.log(query);
-  stopTimer("createPam");
 }
 
 await createPam();
+process.exit(0);

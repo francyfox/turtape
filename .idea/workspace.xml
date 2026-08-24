@@ -4,15 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58e82fea-f0c9-4884-90fe-984add87acb1" name="Changes" comment="feat: docker no cache">
+    <list default="true" id="58e82fea-f0c9-4884-90fe-984add87acb1" name="Changes" comment="fix: add cpp">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_21_08_2026,_15_11_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_21_08_2026,_15_11_[Changes]1/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_21_08_2026__15_11__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/PROJECT_STRUCTURE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/plugin/index.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/plugin/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/plugin/plugin.logger.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/plugin/plugin.logger.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/log-plugin.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/log-plugin.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/retry-plugin.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/retry-plugin.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/db.Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/src/clear-graph.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/src/clear-graph.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/src/sdk.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/src/sdk.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/sdk/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/middleware.test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/middleware.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/retry.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/plugin/plugin.retry.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/http-client/retry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/plugin/plugin.retry.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/modules/turingdb-provider/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/sdk/src/utils/test-support.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/sdk/src/utils/test-support.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,11 +88,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs" />
+      <recent name="$PROJECT_DIR$/packages/sdk/src/modules/plugin" />
       <recent name="$PROJECT_DIR$/packages/sdk/src/utils" />
       <recent name="$PROJECT_DIR$/examples" />
       <recent name="$PROJECT_DIR$/apps/docs/static" />
-      <recent name="$PROJECT_DIR$/packages/sdk/src" />
-      <recent name="$PROJECT_DIR$/packages" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -94,6 +112,7 @@
       <workItem from="1787114405860" duration="17637000" />
       <workItem from="1787200614475" duration="18827000" />
       <workItem from="1787290242953" duration="12431000" />
+      <workItem from="1787548265121" duration="7149000" />
     </task>
     <task id="LOCAL-00001" summary="feat: ci deploy docs">
       <option name="closed" value="true" />
@@ -143,7 +162,15 @@
       <option name="project" value="LOCAL" />
       <updated>1787296643575</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fix: add cpp">
+      <option name="closed" value="true" />
+      <created>1787307297760</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1787307297760</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +192,7 @@
     <MESSAGE value="feat: turingDB errors" />
     <MESSAGE value="feat: docker 1.36" />
     <MESSAGE value="feat: docker no cache" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: docker no cache" />
+    <MESSAGE value="fix: add cpp" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: add cpp" />
   </component>
 </project>

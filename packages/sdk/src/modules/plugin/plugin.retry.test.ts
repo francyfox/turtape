@@ -1,6 +1,9 @@
 import { describe, expect, test } from "bun:test";
-import { withRetry } from "@/modules/http-client/retry";
+import { compose, type HttpRequestOptions } from "@/modules/plugin/index.ts";
+import { retryPlugin, withRetry } from "@/modules/plugin/plugin.retry.ts";
 import { captureRejection } from "@/utils/test-support.ts";
+
+const request: HttpRequestOptions = { path: "/query" };
 
 describe("withRetry", () => {
   test("returns the result on first success without retrying", async () => {
@@ -68,5 +71,44 @@ describe("withRetry", () => {
     );
     expect(error.message).toBe("not transient");
     expect(calls).toBe(1);
+  });
+});
+
+describe("retryPlugin", () => {
+  test("does not retry by default, even on a thrown error", async () => {
+    let calls = 0;
+    const pipeline = compose([retryPlugin()], async () => {
+      calls++;
+      throw new Error("boom");
+    });
+
+    await captureRejection(pipeline(request));
+    expect(calls).toBe(1);
+  });
+
+  test("isRetryable sees the request that failed, not just the error", async () => {
+    let calls = 0;
+    const seenPaths: string[] = [];
+    const pipeline = compose(
+      [
+        retryPlugin({
+          retries: 2,
+          minDelayMs: 1,
+          maxDelayMs: 2,
+          isRetryable: (_error, req) => {
+            seenPaths.push(req.path);
+            return req.path !== "/no-retry";
+          },
+        }),
+      ],
+      async () => {
+        calls++;
+        throw new Error("transient");
+      },
+    );
+
+    await captureRejection(pipeline({ path: "/no-retry" }));
+    expect(calls).toBe(1);
+    expect(seenPaths).toEqual(["/no-retry"]);
   });
 });

@@ -27,4 +27,5 @@ export async function clearGraph(graphName?: string) {
 if (import.meta.main) {
   await clearGraph();
   console.log("Graph cleared.");
+  process.exit(0);
 }
