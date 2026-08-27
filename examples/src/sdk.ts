@@ -1,14 +1,5 @@
 import { loggerPlugin, TuringDBProvider, TurtapeSdk } from "@turtape/sdk";
 
-let timer = 0;
-function startTimer() {
-  timer = 0;
-  timer = performance.now();
-}
-
-function stopTimer(fnName: string) {
-  console.log(`[${fnName}] ${performance.now() - timer} ms`);
-}
 const sdk = TurtapeSdk({
   provider: TuringDBProvider(),
 }).use(loggerPlugin());
@@ -54,5 +45,6 @@ async function createPam() {
   await sdk.queryRaw("CHANGE SUBMIT", { change: changeId });
 }
 
+// console.log(await sdk.queryRaw("match (n) return n limit 10"));
 await createPam();
 process.exit(0);

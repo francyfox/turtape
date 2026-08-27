@@ -4,6 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Keep this file up to date.** Whenever a change affects anything described here — new/removed apps or packages, new commands, changed architecture — update this file in the same change. Stale docs here are worse than no docs.
 
+## Shared team memory
+
+The following import pulls in the team's accumulated memory — coding-style feedback (with rationale and worked examples), architecture invariants, and project context. It is committed to the repo and loaded from CLAUDE.md so it reaches every teammate deterministically, independent of anyone's personal memory configuration. Treat these entries as binding as the rules in this file.
+
+@.claude/memory/MEMORY.md
+
 ## Project state
 
 Turborepo monorepo, package manager is Bun (`devEngines.packageManager` in `package.json`), consistent with the default Bun guidance below.

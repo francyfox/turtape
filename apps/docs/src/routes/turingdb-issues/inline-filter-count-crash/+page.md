@@ -4,6 +4,8 @@ title: Inline filter + count() crash
 
 # Inline pattern property filter + `count()` throws an internal engine error
 
+**Status: fixed in `v1.37`** (2026-08-24 release). Re-tested directly against this repo's `docker/db.Dockerfile` image rebuilt on `v1.37` (`turingdb==1.37` confirmed via `python3 -c "from turingdb import _version; print(_version.version)"` inside the container): `MATCH (z:Zebra {name: "Marty"}) RETURN count(z)` now returns `{"count(z)": 1}` instead of the `EXEC_ERROR` below. The `v1.37` changelog has no PR that names this bug directly, but it lands a batch of MLIR aggregate/`count()` work (codegen for aggregates, `count(*)` input-column resolution, various "fixes for collect and aggregates") that plausibly fixed it as a side effect. Kept below for history.
+
 **Repro:**
 ```cypher
 MATCH (z:Zebra {name: "Marty"}) RETURN count(z)
