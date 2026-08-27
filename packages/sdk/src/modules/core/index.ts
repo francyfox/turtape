@@ -1,4 +1,7 @@
-import { createTurtapeService } from "@/modules/core/service.ts";
+import {
+  createTurtapeService,
+  type TurtapeService,
+} from "@/modules/core/service.ts";
 import type { TurtapeConfig } from "@/modules/core/types";
 import { TuringDBProvider } from "@/modules/turingdb-provider";
 
@@ -19,8 +22,8 @@ export const TurtapeSdk = (
   { provider }: TurtapeConfig = {
     provider: TuringDBProvider(),
   },
-) => {
+): TurtapeService => {
   return createTurtapeService({ provider });
 };
 
-export type { TurtapeConfig };
+export type { TurtapeConfig, TurtapeService };

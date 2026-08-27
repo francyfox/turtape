@@ -1,4 +1,8 @@
-import { type TurtapeConfig, TurtapeSdk } from "@/modules/core";
+import {
+  type TurtapeConfig,
+  TurtapeSdk,
+  type TurtapeService,
+} from "@/modules/core";
 import { TurtapeError } from "@/modules/core/errors";
 import type { Plugin } from "@/modules/plugin";
 import {
@@ -35,4 +39,5 @@ export {
   type TurtapeConfig,
   TurtapeError,
   TurtapeSdk,
+  type TurtapeService,
 };

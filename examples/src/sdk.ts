@@ -45,6 +45,6 @@ async function createPam() {
   await sdk.queryRaw("CHANGE SUBMIT", { change: changeId });
 }
 
-// console.log(await sdk.queryRaw("match (n) return n limit 10"));
-await createPam();
+console.log(await sdk.queryRaw("MATCH (n:Person) RETURN n"));
+// await createPam();
 process.exit(0);

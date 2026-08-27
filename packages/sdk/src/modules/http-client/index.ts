@@ -40,6 +40,16 @@ export interface HttpClient {
  * ```
  */
 export const createHttpClient = (options: HttpClientOptions): HttpClient => {
+  const plugins: Plugin[] = [];
+
+  const client: HttpClient = {
+    use(plugin) {
+      plugins.push(plugin);
+      return client;
+    },
+    request: <T>(request: HttpRequestOptions) =>
+      compose(plugins, send)(request) as Promise<T>,
+  };
   const send = async (request: HttpRequestOptions): Promise<unknown> => {
     const url = new URL(request.path, options.host);
     if (request.params) {
@@ -68,17 +78,6 @@ export const createHttpClient = (options: HttpClientOptions): HttpClient => {
     }
 
     return body;
-  };
-
-  const plugins: Plugin[] = [];
-
-  const client: HttpClient = {
-    use(plugin) {
-      plugins.push(plugin);
-      return client;
-    },
-    request: <T>(request: HttpRequestOptions) =>
-      compose(plugins, send)(request) as Promise<T>,
   };
 
   return client;
