@@ -22,12 +22,9 @@ export interface TurtapeErrorOptions {
  */
 export class TurtapeError extends Error {
   readonly code?: string;
-  readonly details?: string;
 
   constructor(message: string, options: TurtapeErrorOptions = {}) {
-    super(message, { cause: options.cause });
+    super(`${message}\n${options.details}`, { cause: options.cause });
     this.name = "TurtapeError";
-    this.code = options.code;
-    this.details = options.details;
   }
 }

@@ -63,7 +63,6 @@ if (import.meta.main) {
 
   // Row count per chunk, read off the first column -- every column in a chunk is the same length.
   const chunkSizes = result.data.map((chunk) => chunk[0]?.length ?? 0);
-
   console.log(
     `chunks: ${result.data.length} (sizes: ${chunkSizes.join(", ")})`,
   );

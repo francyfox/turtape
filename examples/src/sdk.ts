@@ -1,5 +1,7 @@
 import { loggerPlugin, TuringDBProvider, TurtapeSdk } from "@turtape/sdk";
+import { TuringDB } from "../libs/turingdb-typescript-sdk-main/src";
 
+const testSdk = new TuringDB({ host: "http://localhost:6666" });
 const sdk = TurtapeSdk({
   provider: TuringDBProvider(),
 }).use(loggerPlugin());
@@ -45,6 +47,7 @@ async function createPam() {
   await sdk.queryRaw("CHANGE SUBMIT", { change: changeId });
 }
 
-console.log(await sdk.queryRaw("MATCH (n:Person) RETURN n"));
+console.log(await sdk.queryRaw("MATCH (n:Person) RETURN n.name, n.age"));
+// console.log(await testSdk.queryRows("MATCH (n:Person) RETURN n.name, n.age"));
 // await createPam();
 process.exit(0);
